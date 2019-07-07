@@ -1,0 +1,26 @@
+name: rfcat-phocean
+version: commit-109f887
+summary: Rfcat
+description: |
+  Rfcat is a swiss-army knife of ISM band radio.
+base: core18
+confinement: classic
+grade: stable
+
+parts:
+  rfcat:
+    source: https://github.com/atlas0fd00m/rfcat.git
+    plugin: python
+    python-version: python2
+    build-packages:
+      - python-pip
+    stage-packages:
+      - libusb-1.0-0
+      - libpng-dev
+      - libfreetype6-dev
+      - ipython
+    
+apps:
+  rfcat:
+    command: rfcat
+    plugs: [home]
