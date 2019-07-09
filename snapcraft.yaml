@@ -4,7 +4,7 @@ summary: Rfcat
 description: |
   Rfcat is a swiss-army knife of ISM band radio.
 base: core18
-confinement: classic
+confinement: strict
 grade: stable
 
 parts:
@@ -17,10 +17,17 @@ parts:
     stage-packages:
       - libusb-1.0-0
       - libpng-dev
+      - sdcc
       - libfreetype6-dev
       - ipython
+      - python-usb
+      - python-serial
+      - libtinfo5
     
 apps:
   rfcat:
     command: bin/rfcat
+    plugs: [home,network-bind,mount-observe,system-observe,raw-usb,hardware-observe,hidraw]
+  rfcat-bootloader:
+    command: bin/rfcat_bootloader
     plugs: [home]
